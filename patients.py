@@ -69,13 +69,13 @@ class servicesPatient:
         con.close()
         return lst_std
 
-@staticmethod 
-def get_patientBy_any(value):
-    con = Connect_To_db.connect()
-    c = con.cursor()
-    value_like = f"%{value}%"
+    @staticmethod 
+    def get_patientBy_any(value):
+        con = Connect_To_db.connect()
+        c = con.cursor()
+        value_like = f"%{value}%"
     
-    c.execute("""
+        c.execute("""
         SELECT * FROM Patients 
         WHERE patient_id = ? 
         OR first_name LIKE ? 
@@ -85,9 +85,9 @@ def get_patientBy_any(value):
         OR accommodation LIKE ?
     """, (value, value_like, value_like, value_like, value_like, value_like))
     
-    std = c.fetchall()
-    con.close()    
-    return std
+        std = c.fetchall()
+        con.close()    
+        return std
 
  #  delete patient from database by id
     @staticmethod
