@@ -150,3 +150,13 @@ class PatientApp:
         tk.Entry(self.frame_input, textvariable=self.email_var, width=20, font=("Arial", 12)).grid(row=1, column=1, padx=5, pady=5)
         tk.Entry(self.frame_input, textvariable=self.age_var, width=20, font=("Arial", 12)).grid(row=1, column=3, padx=5, pady=5)
         tk.Entry(self.frame_input, textvariable=self.accommodation_var, width=20, font=("Arial", 12)).grid(row=2, column=1, padx=5, pady=5)
+        
+        # Buttons
+        self.frame_buttons = tk.Frame(root, bg="#E8F6F3")
+        self.frame_buttons.pack(pady=10)
+        
+        tk.Button(self.frame_buttons, text="Add Patient", width=15, bg="#5DADE2", fg="white", command=self.add_patient).grid(row=0, column=0, padx=5)
+        tk.Button(self.frame_buttons, text="Update Selected", width=15, bg="#F4D03F", fg="white", command=self.update_patient).grid(row=0, column=1, padx=5)
+        tk.Button(self.frame_buttons, text="Delete Selected", width=15, bg="#E74C3C", fg="white", command=self.delete_patient).grid(row=0, column=2, padx=5)
+        tk.Button(self.frame_buttons, text="Search", width=15, bg="#58D68D", fg="white", command=self.search_patient).grid(row=0, column=3, padx=5)
+        tk.Button(self.frame_buttons, text="Show All", width=15, bg="#A569BD", fg="white", command=self.show_all_patients).grid(row=0, column=4, padx=5)
