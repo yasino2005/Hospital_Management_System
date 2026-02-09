@@ -72,3 +72,11 @@ class servicesPatient:
         con.close()
         return lst_std
     
+ #  delete patient from database by id
+    @staticmethod
+    def delete_patientByid(id):
+       con=Connect_To_db.connect()
+       c=con.cursor()
+       c.execute("DELETE FROM  Patients WHERE patient_id=?",(id,))
+       con.commit()
+       con.close()
