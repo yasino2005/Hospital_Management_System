@@ -160,3 +160,20 @@ class PatientApp:
         tk.Button(self.frame_buttons, text="Delete Selected", width=15, bg="#E74C3C", fg="white", command=self.delete_patient).grid(row=0, column=2, padx=5)
         tk.Button(self.frame_buttons, text="Search", width=15, bg="#58D68D", fg="white", command=self.search_patient).grid(row=0, column=3, padx=5)
         tk.Button(self.frame_buttons, text="Show All", width=15, bg="#A569BD", fg="white", command=self.show_all_patients).grid(row=0, column=4, padx=5)
+        
+        # Treeview لعرض المرضى
+        self.tree = ttk.Treeview(root, columns=("ID","First Name","Last Name","Email","Age","Accommodation"), show="headings")
+        self.tree.heading("ID", text="ID")
+        self.tree.heading("First Name", text="First Name")
+        self.tree.heading("Last Name", text="Last Name")
+        self.tree.heading("Email", text="Email")
+        self.tree.heading("Age", text="Age")
+        self.tree.heading("Accommodation", text="Accommodation")
+        self.tree.column("ID", width=50, anchor="center")
+        self.tree.pack(pady=20, fill=tk.BOTH, expand=True)
+
+        # Bind لاختيار الصف
+        self.tree.bind("<<TreeviewSelect>>", self.on_tree_select)
+        
+        # عرض كل المرضى عند البداية
+        self.show_all_patients()
