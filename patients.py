@@ -1,4 +1,7 @@
 import sqlite3
+import tkinter as tk
+from tkinter import ttk, messagebox
+from tkinter import simpledialog
 class Patient:
     def __init__(self,first_name,last_name,email,age,accommodation):
         self.first_name=first_name
@@ -107,3 +110,43 @@ class servicesPatient:
          con.commit()
          con.close()
     
+
+#front end
+class PatientApp:
+    def __init__(self, root):
+        
+        self.root = root
+        self.root.title("Hospital Patient Management")
+        self.root.geometry("950x550")
+        self.root.configure(bg="#E8F6F3")  
+        
+        # Style للـ Treeview
+        style = ttk.Style()
+        style.configure("Treeview.Heading", font=("Arial", 12, "bold"))
+        style.configure("Treeview", font=("Arial", 11), rowheight=30)
+        style.configure("TButton", font=("Arial", 11, "bold"), padding=5)
+        style.configure("TLabel", font=("Arial", 11))
+        style.configure("TEntry", font=("Arial", 11))
+        
+        # Frame لإدخال بيانات المريض
+        self.frame_input = tk.Frame(root, bg="#E8F6F3")
+        self.frame_input.pack(pady=15)
+        
+        # Labels و Entry لكل خاصية
+        tk.Label(self.frame_input, text="First Name", bg="#E8F6F3").grid(row=0, column=0, padx=5, pady=5)
+        tk.Label(self.frame_input, text="Last Name", bg="#E8F6F3").grid(row=0, column=2, padx=5, pady=5)
+        tk.Label(self.frame_input, text="Email", bg="#E8F6F3").grid(row=1, column=0, padx=5, pady=5)
+        tk.Label(self.frame_input, text="Age", bg="#E8F6F3").grid(row=1, column=2, padx=5, pady=5)
+        tk.Label(self.frame_input, text="Accommodation", bg="#E8F6F3").grid(row=2, column=0, padx=5, pady=5)
+        
+        self.first_name_var = tk.StringVar()
+        self.last_name_var = tk.StringVar()
+        self.email_var = tk.StringVar()
+        self.age_var = tk.StringVar()
+        self.accommodation_var = tk.StringVar()
+        
+        tk.Entry(self.frame_input, textvariable=self.first_name_var, width=20, font=("Arial", 12)).grid(row=0, column=1, padx=5, pady=5)
+        tk.Entry(self.frame_input, textvariable=self.last_name_var, width=20, font=("Arial", 12)).grid(row=0, column=3, padx=5, pady=5)
+        tk.Entry(self.frame_input, textvariable=self.email_var, width=20, font=("Arial", 12)).grid(row=1, column=1, padx=5, pady=5)
+        tk.Entry(self.frame_input, textvariable=self.age_var, width=20, font=("Arial", 12)).grid(row=1, column=3, padx=5, pady=5)
+        tk.Entry(self.frame_input, textvariable=self.accommodation_var, width=20, font=("Arial", 12)).grid(row=2, column=1, padx=5, pady=5)
