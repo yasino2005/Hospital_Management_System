@@ -51,3 +51,13 @@ class servicesPatient:
             )
            con.commit()
            con.close()
+           
+# get all patient from database
+    @staticmethod 
+    def get_Patient():
+        con=Connect_To_db.connect()
+        c=con.cursor()
+        c.execute("SELECT * FROM Patients")
+        lst_std=c.fetchall()
+        con.close()
+        return lst_std
