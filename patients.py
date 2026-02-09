@@ -68,7 +68,27 @@ class servicesPatient:
         lst_std=c.fetchone()
         con.close()
         return lst_std
+
+@staticmethod 
+def get_patientBy_any(value):
+    con = Connect_To_db.connect()
+    c = con.cursor()
+    value_like = f"%{value}%"
     
+    c.execute("""
+        SELECT * FROM Patients 
+        WHERE patient_id = ? 
+        OR first_name LIKE ? 
+        OR last_name LIKE ? 
+        OR email LIKE ? 
+        OR CAST(age AS TEXT) LIKE ? 
+        OR accommodation LIKE ?
+    """, (value, value_like, value_like, value_like, value_like, value_like))
+    
+    std = c.fetchall()
+    con.close()    
+    return std
+
  #  delete patient from database by id
     @staticmethod
     def delete_patientByid(id):
