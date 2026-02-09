@@ -40,3 +40,14 @@ class servicesPatient:
         ''')
         con.commit()
         con.close()
+        
+# Add a Patient to the database 
+    @staticmethod
+    def add_patient(pat:Patient):
+           con = Connect_To_db.connect()
+           c=con.cursor()
+           c.execute("""
+            INSERT INTO Patients (first_name, last_name, email, age, accommodation) VALUES (?, ?, ?, ?, ?)""",(pat.first_name,pat.last_name,pat.email,pat.age,pat.accommodation) 
+            )
+           con.commit()
+           con.close()
