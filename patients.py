@@ -80,3 +80,13 @@ class servicesPatient:
        c.execute("DELETE FROM  Patients WHERE patient_id=?",(id,))
        con.commit()
        con.close()
+       
+# update patients from database by id
+    @staticmethod
+    def update_patientByid(id,first_name,last_name,email,age,accommodation):
+         con= Connect_To_db.connect()
+         c=con.cursor()
+         c.execute("UPDATE Patients SET first_name =? , last_name = ?,email=? ,age=?,accommodation=? WHERE patient_id=?  ",(first_name,last_name,email,age,accommodation ,id))
+         con.commit()
+         con.close()
+    
