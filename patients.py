@@ -61,3 +61,14 @@ class servicesPatient:
         lst_std=c.fetchall()
         con.close()
         return lst_std
+
+# get patient from databse by id
+    @staticmethod 
+    def get_patientByid(id):
+        con=Connect_To_db.connect()
+        c=con.cursor()
+        c.execute("SELECT * FROM Patients WHERE patient_id = ?",(id,))
+        lst_std=c.fetchall()
+        con.close()
+        return lst_std
+    
